@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/product/update/req/{{entry.id}}" method="post">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="name" placeholder="Name" value="{{ entry.name }}" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="number" name="price" placeholder="Price" value="{{ entry.price }}" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="number" name="stock" placeholder="Stock" value="{{ entry.stock }}" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control"  name="description" placeholder="Description" value="{{ entry.description }}"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="number" name="provarsids" placeholder="Product Variant IDS" value="{{ entry.provarsids }}" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="propsids" placeholder="Props IDs" value="{{ entry.propsids }}" required>
+                        </div>
+                        <button class="btn btn-primary" type="submit">
+                            Add
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+

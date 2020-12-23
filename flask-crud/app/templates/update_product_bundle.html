@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/bundle/update/req/{{entry.id}}" method="post">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="name" placeholder="Name" value="{{ entry.name }}" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="product_variant_id" placeholder="Product Variant ID" value="{{ entry.product_variant_id }}" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="price" placeholder="Price" value="{{ entry.price }}" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="propsids" placeholder="Props IDs" value="{{ entry.propsids }}" required>
+                        </div>
+                        <button class="btn btn-primary" type="submit">
+                            Add
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+

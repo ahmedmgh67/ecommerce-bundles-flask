@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <center>
+
+        <h2>Products</h2>
+    </center>
+    <div class="row">
+        {% for entry in products %}
+
+        <div class="col-md-3">
+            <div class="card">
+                <img  src="{{url_for('static', filename=entry.photo)}}"   class="card-img-top" alt="...">
+                <div class="card-body">
+                    <form action="/add" method="post">
+                        <h3>{{entry.name}}</h3>
+                        <h6>{{entry.description}}</h6>
+                        <h6>Quantity: {{entry.stock}}</h6>
+                        
+                        <a class="btn btn-primary" href='/buy/{{entry.id}}'>
+                            View
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        
+
+    </div>
+    <center>
+
+        <h2>Bundles</h2>
+    </center>
+    <div class="row">
+        {% for entry in bundles %}
+
+        <div class="col-md-3">
+            <div class="card">
+                <img  src="{{url_for('static', filename=entry.photo)}}"   class="card-img-top" alt="...">
+                <div class="card-body">
+                    <form action="/add" method="post">
+                        <h3>{{entry.name}}</h3>
+                        <h6>{{entry.description}}</h6>
+                        
+                        <a class="btn btn-primary" href="/buyBun/{{entry.id}}" >
+                            View
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        
+
+    </div>
+
+
+
+
+
+</div>
+
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+<div class="container">
+  <center>
+
+    <h2>{{bundle.name}}</h2>
+  </center>
+  <div class="row justify-content-center align-self-center">
+
+    <div class="col-md-3">
+      <div class="card">
+        <img src="{{url_for('static', filename=bundle.photo)}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h6>Price: {{bundle.price}}</h6>
+          <h6> <strong>Properties</strong> </h6>
+            {% for entryva in propsList%}
+             <span>{{entryva.name}} : {{entryva.value}}</span><br>
+            {% endfor %}<br>
+          <a class="btn btn-primary" href="/buybunf/{{bundle.id}}" >
+            Buy
+          </a>
+        </div>
+        </div>
+        <div class="container">
+
+          <div class="row">
+            <h2>Products In The Bundle</h2>
+            {% for p in productsIn %}
+            
+            <div class="card">
+              <img src="{{url_for('static', filename=p.photo)}}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <form action="/add" method="post">
+                  <h6>{{p.description}}</h6>
+                  <h6>Price: {{p.price }}</h6>
+                  <h6>Quantity: {{p.stock }}</h6>
+                  
+                </form>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

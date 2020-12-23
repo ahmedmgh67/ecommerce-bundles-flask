@@ -1,0 +1,412 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <!-- <div class="row"> -->
+    <!-- 
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/add" method="post">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="title" placeholder="Title" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="description" cols="100"
+                                      placeholder="Add a Description" required></textarea>
+                        </div>
+                        <button class="btn btn-primary" type="submit">
+                            Add
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Operations</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entry in entries %}
+                <tr>
+                    <td>{{ entry.id }}</td>
+                    <td><strong>{{ entry.title }}</strong></td>
+                    <td>{{ entry.description }}</td>
+                    <td>
+                        <a class="{{ 'btn btn-success' if entry.status else 'btn btn-dark'}}"
+                           href="/turn/{{ entry.id }}">
+                            Turn Status
+                        </a>
+                        <a class="btn btn-danger"
+                           href="/delete/{{ entry.id }}">
+                            Delete
+                        </a>
+                        <a class="btn btn-info"
+                           href="/update/{{ entry.id }}">
+                            Edit
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+    </div> -->
+
+
+
+
+    <!-- PRODUCT -->
+
+
+
+
+
+
+
+
+    <center>
+
+        <h1>Product</h1>
+    </center>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/product/add" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="name" placeholder="Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="number" name="price" placeholder="Price" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="number" name="stock" placeholder="Stock" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="description" placeholder="Description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="propsids" placeholder="Product Props IDs">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="provarsids" hidden value='hi' placeholder="Product Variants IDs">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="file" name="file1">
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">
+                            Add
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Description</th>
+                        <th>Product Props</th>
+                        <th>Photo</th>
+                        <th>Operations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in products %}
+                    <tr>
+                        <td>{{ entry.id }}</td>
+                        <td><strong>{{ entry.name }}</strong></td>
+                        <td><strong>{{ entry.price }}</strong></td>
+                        <td><strong>{{ entry.stock }}</strong></td>
+                        <td><strong>{{ entry.description }}</strong></td>
+                        <td><strong>{{ entry.propsids }}</strong></td>
+                        <td><strong> <img src="{{url_for('static', filename=entry.photo)}}" width="100" alt="">
+                            </strong></td>
+                        <td>
+                            <a class="btn btn-danger" href="/product/delete/{{ entry.id }}">
+                                Delete
+                            </a>
+                            <a class="btn btn-info" href="/product/update/{{ entry.id }}">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <!-- PRODUCT VARIANT -->
+
+
+
+
+    <center>
+
+        <h1>Product Variant</h1>
+    </center>
+
+
+
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/productVar/add" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="SKU" placeholder="Original Product ID" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="name" placeholder="Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="number" name="price" placeholder="Price" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="number" name="stock" placeholder="Stock" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="propsids" placeholder="Product Props IDs">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="file" name="file1" required>
+                        </div>
+                        <button class="btn btn-primary" type="submit">
+                            Add
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>SKU</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Product Props</th>
+                        <th>Photo</th>
+                        <th>Operations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in productvars %}
+                    <tr>
+                        <td>{{ entry.id }}</td>
+                        <td><strong>{{ entry.SKU }}</strong></td>
+                        <td><strong>{{ entry.name }}</strong></td>
+                        <td><strong>{{ entry.price }}</strong></td>
+                        <td><strong>{{ entry.stock }}</strong></td>
+                        <td><strong>{{ entry.propsids }}</strong></td>
+                        <td><strong><img src="{{url_for('static', filename=entry.photo)}}" width="100" alt=""></strong></td>
+                        <td>
+                            <a class="btn btn-danger" href="/productVar/delete/{{ entry.id }}">
+                                Delete
+                            </a>
+                            <a class="btn btn-info" href="/productVar/update/{{ entry.id }}">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+
+
+
+
+    <!-- Property -->
+
+
+
+    <center>
+
+        <h1>Property</h1>
+    </center>
+
+
+
+
+
+
+
+
+
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/prop/add" method="post">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="name" placeholder="Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="value" placeholder="Value" required>
+                        </div>
+                        <button class="btn btn-primary" type="submit">
+                            Add
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Value</th>
+                        <th>Operations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in props %}
+                    <tr>
+                        <td>{{ entry.id }}</td>
+                        <td><strong>{{ entry.name }}</strong></td>
+                        <td><strong>{{ entry.value }}</strong></td>
+                        <td>
+                            <a class="btn btn-danger" href="/prop/delete/{{ entry.id }}">
+                                Delete
+                            </a>
+                            <a class="btn btn-info" href="/prop/update/{{ entry.id }}">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+
+
+
+
+    <!-- BUNDLE -->
+
+
+
+
+    <center>
+
+        <h1>Bundle</h1>
+    </center>
+
+
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/bundle/add" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="name" placeholder="Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="product_variant_id"
+                                placeholder="Bundle Variant ID" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="price" placeholder="Price" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="propsids" placeholder="Bundle Props IDs">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="file" name="file1" required>
+                        </div>
+                        <button class="btn btn-primary" type="submit">
+                            Add
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Bundle Variant IDs (Seperate by Comma)</th>
+                        <th>Price</th>
+                        <th>Bundle Props IDS</th>
+                        <th>Photo</th>
+                        
+                        <th>Operations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in bundles %}
+                    <tr>
+                        <td>{{ entry.id }}</td>
+                        <td><strong>{{ entry.name }}</strong></td>
+                        <td>{{ entry.product_variant_id }}</td>
+                        <td>{{ entry.price }}</td>
+                        <td>{{ entry.propsids }}</td>
+                        <td> <img src="{{url_for('static', filename=entry.photo)}}" width="100" alt=""></td>
+                        <td>
+                            <a class="btn btn-danger" href="/bundle/delete/{{ entry.id }}">
+                                Delete
+                            </a>
+                            <a class="btn btn-info" href="/bundle/update/{{ entry.id }}">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

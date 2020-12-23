@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+<div class="container">
+  <center>
+
+    <h2>{{entry.name}}{{' - ' if pv.name }}{{pv.name if pv.name != None}}</h2>
+  </center>
+  <div class="row justify-content-center align-self-center">
+
+    <div class="col-md-3">
+      <div class="card">
+        <img src="{{url_for('static', filename=pv.photo or entry.photo)}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <form action="/add" method="post">
+            <h6>{{entry.description}}</h6>
+            <h6>Price: {{pv.price or entry.price}}</h6>
+            <h6>Quantity: {{pv.stock or entry.stock}}</h6>
+            
+            <h6> <strong>Properties</strong> </h6>
+            {% for entryva in propsList%}
+             <span>{{entryva.name}} : {{entryva.value}}</span><br>
+            {% endfor %}<br>
+
+            <h6> <strong>Variants</strong> </h6>
+            {% for entryv in pvs%}
+            | <a href="http://localhost:5000/buy/{{entry.id}}/{{entryv.id}}">{{entryv.name}}</a>
+            {% endfor %}|<br>
+            <a class="btn btn-primary" href="/buyf/{{entry.id}}/{{pv.id or ''}}" type="submit">
+              Buy
+            </a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
